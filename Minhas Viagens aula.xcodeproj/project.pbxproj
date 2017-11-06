@@ -8,20 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		EC90CA061FAFD7480028C9F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC90CA051FAFD7480028C9F7 /* AppDelegate.swift */; };
-		EC90CA081FAFD7480028C9F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC90CA071FAFD7480028C9F7 /* ViewController.swift */; };
+		EC90CA081FAFD7480028C9F7 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC90CA071FAFD7480028C9F7 /* TableViewController.swift */; };
 		EC90CA0B1FAFD7480028C9F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC90CA091FAFD7480028C9F7 /* Main.storyboard */; };
 		EC90CA0D1FAFD7480028C9F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC90CA0C1FAFD7480028C9F7 /* Assets.xcassets */; };
 		EC90CA101FAFD7480028C9F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC90CA0E1FAFD7480028C9F7 /* LaunchScreen.storyboard */; };
+		EC90CA1A1FAFE3600028C9F7 /* MapaViagemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC90CA191FAFE3600028C9F7 /* MapaViagemViewController.swift */; };
+		EC90CA1C1FAFE5180028C9F7 /* ViagensDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC90CA1B1FAFE5180028C9F7 /* ViagensDefaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EC90CA021FAFD7480028C9F7 /* Minhas Viagens aula.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Minhas Viagens aula.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC90CA051FAFD7480028C9F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EC90CA071FAFD7480028C9F7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EC90CA071FAFD7480028C9F7 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		EC90CA0A1FAFD7480028C9F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EC90CA0C1FAFD7480028C9F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC90CA0F1FAFD7480028C9F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC90CA111FAFD7480028C9F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC90CA181FAFD8630028C9F7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		EC90CA191FAFE3600028C9F7 /* MapaViagemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapaViagemViewController.swift; sourceTree = "<group>"; };
+		EC90CA1B1FAFE5180028C9F7 /* ViagensDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViagensDefaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +45,7 @@
 			children = (
 				EC90CA041FAFD7480028C9F7 /* Minhas Viagens aula */,
 				EC90CA031FAFD7480028C9F7 /* Products */,
+				EC90CA171FAFD8630028C9F7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,13 +61,23 @@
 			isa = PBXGroup;
 			children = (
 				EC90CA051FAFD7480028C9F7 /* AppDelegate.swift */,
-				EC90CA071FAFD7480028C9F7 /* ViewController.swift */,
+				EC90CA071FAFD7480028C9F7 /* TableViewController.swift */,
+				EC90CA191FAFE3600028C9F7 /* MapaViagemViewController.swift */,
+				EC90CA1B1FAFE5180028C9F7 /* ViagensDefaults.swift */,
 				EC90CA091FAFD7480028C9F7 /* Main.storyboard */,
 				EC90CA0C1FAFD7480028C9F7 /* Assets.xcassets */,
 				EC90CA0E1FAFD7480028C9F7 /* LaunchScreen.storyboard */,
 				EC90CA111FAFD7480028C9F7 /* Info.plist */,
 			);
 			path = "Minhas Viagens aula";
+			sourceTree = "<group>";
+		};
+		EC90CA171FAFD8630028C9F7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EC90CA181FAFD8630028C9F7 /* CoreLocation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,7 +152,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC90CA081FAFD7480028C9F7 /* ViewController.swift in Sources */,
+				EC90CA1A1FAFE3600028C9F7 /* MapaViagemViewController.swift in Sources */,
+				EC90CA1C1FAFE5180028C9F7 /* ViagensDefaults.swift in Sources */,
+				EC90CA081FAFD7480028C9F7 /* TableViewController.swift in Sources */,
 				EC90CA061FAFD7480028C9F7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,11 +295,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RDTR6557FX;
 				INFOPLIST_FILE = "Minhas Viagens aula/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cursoios.Minhas-Viagens-aula1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -292,11 +311,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RDTR6557FX;
 				INFOPLIST_FILE = "Minhas Viagens aula/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cursoios.Minhas-Viagens-aula1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
