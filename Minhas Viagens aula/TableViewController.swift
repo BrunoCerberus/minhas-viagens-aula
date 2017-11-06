@@ -39,6 +39,12 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
+    
+    override var prefersStatusBarHidden: Bool {
+        get {
+            return true
+        }
+    }
 
 }
 
