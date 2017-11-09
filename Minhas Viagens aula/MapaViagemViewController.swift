@@ -15,15 +15,45 @@ class MapaViagemViewController : UIViewController, MKMapViewDelegate, CLLocation
     
     @IBOutlet weak var mapa: MKMapView!
     var gerenciadorLocalizacao = CLLocationManager()
+    var viagem : Dictionary<String, String> = [:]
+    let armazenadorViagem = ViagensDefaults()
+    var indiceSelecionado : Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configurarGerenciadorLocalizacao()
+        
+        if let indice = indiceSelecionado {
+            if indice == -1 {//adicionar
+                configurarGerenciadorLocalizacao()
+            } else {//listar
+                exibirAnotacao(viagem)
+            }
+        }
         
         let reconhecedorDeGesto = UILongPressGestureRecognizer(target: self, action: #selector(marcar))
         reconhecedorDeGesto.minimumPressDuration = 1
         
         mapa.addGestureRecognizer(reconhecedorDeGesto)
+    }
+    
+    func exibirAnotacao(_ viagem: Dictionary<String, String>) {
+        
+        if let localViagem = viagem["local"] {
+            if let latitude = viagem["latitude"] {
+                if let longitude = viagem["longitude"] {
+                    
+                    let anotacao = MKPointAnnotation()
+                    anotacao.coordinate.latitude = Double(latitude)!
+                    anotacao.coordinate.longitude = Double(longitude)!
+                    anotacao.title = localViagem
+                    
+                    self.mapa.addAnnotation(anotacao)
+                    
+                    exibirLocal(Double(latitude)!, Double(longitude)!)
+                }
+            }
+        }
+        
     }
     
     @objc func marcar(gesture: UIGestureRecognizer) {
@@ -56,14 +86,16 @@ class MapaViagemViewController : UIViewController, MKMapViewDelegate, CLLocation
                             
                         }
                         
+                        //Salvar dados no dispositivo
+                        self.viagem = ["local":_localCompleto, "latitude": String(coordenadas.latitude),
+                                       "longitude":String(coordenadas.longitude)]
+                        
+                        self.armazenadorViagem.salvarViagem(self.viagem)
+                        
+                        print(self.viagem)
                     }
                     
-                    let anotacao = MKPointAnnotation()
-                    anotacao.coordinate.latitude = coordenadas.latitude
-                    anotacao.coordinate.longitude = coordenadas.longitude
-                    anotacao.title = _localCompleto
-                    
-                    self.mapa.addAnnotation(anotacao)
+                    self.exibirAnotacao(self.viagem)
                     
                 } else {
                     print(erro!)
@@ -109,6 +141,18 @@ class MapaViagemViewController : UIViewController, MKMapViewDelegate, CLLocation
         
     }
     
+    func exibirLocal(_ latitude: Double,_ longitude: Double) {
+        let latitudeDelta : CLLocationDegrees = 0.05
+        let longitudeDelta : CLLocationDegrees = 0.05
+        
+        let aproximacao : MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
+        let coordenadas : CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        
+        let regiao : MKCoordinateRegion = MKCoordinateRegion(center: coordenadas, span: aproximacao)
+        
+        self.mapa.setRegion(regiao, animated: true)
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         dismissKeyboard()
     }
@@ -124,7 +168,9 @@ class MapaViagemViewController : UIViewController, MKMapViewDelegate, CLLocation
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let localizacao = locations.last!
         
+        exibirLocal(localizacao.coordinate.latitude, localizacao.coordinate.longitude)
     }
     
 }
